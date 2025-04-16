@@ -1,0 +1,27 @@
+<%- include('layout/header') %>
+
+<main class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-center mb-8">Animal Categories</h1>
+    
+    <% categories.forEach(category => { %>
+        <div class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6 text-green-700"><%= category %></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% animalsByCategory[category].forEach(animal => { %>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <img src="<%= animal.imageUrl %>" alt="<%= animal.name %>" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2"><%= animal.name %></h3>
+                            <p class="text-gray-600 mb-2"><em><%= animal.scientificName %></em></p>
+                            <a href="/animal/<%= animal.id %>" class="text-green-600 hover:text-green-800 font-medium">
+                                Learn More →
+                            </a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    <% }); %>
+</main>
+
+<%- include('layout/footer') %>

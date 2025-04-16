@@ -1,0 +1,38 @@
+<%- include('layout/header') %>
+
+<main class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="<%= animal.imageUrl %>" alt="<%= animal.name %>" class="w-full h-96 object-cover">
+        <div class="p-6">
+            <h1 class="text-4xl font-bold mb-2"><%= animal.name %></h1>
+            <p class="text-gray-600 italic mb-4"><%= animal.scientificName %></p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <h2 class="text-xl font-semibold mb-2">Classification</h2>
+                    <p class="mb-2"><strong>Category:</strong> <%= animal.category %></p>
+                    <p><strong>Conservation Status:</strong> 
+                        <span class="<%= animal.conservationStatus === 'Endangered' ? 'text-red-600' : 'text-green-600' %>">
+                            <%= animal.conservationStatus %>
+                        </span>
+                    </p>
+                </div>
+                <div>
+                    <h2 class="text-xl font-semibold mb-2">Habitat</h2>
+                    <p><%= animal.habitat %></p>
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-2">Description</h2>
+                <p class="text-gray-700"><%= animal.description %></p>
+            </div>
+            
+            <a href="/" class="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+                ← Back to All Animals
+            </a>
+        </div>
+    </div>
+</main>
+
+<%- include('layout/footer') %>

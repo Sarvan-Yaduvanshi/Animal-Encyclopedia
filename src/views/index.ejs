@@ -1,0 +1,55 @@
+<%- include('layout/header') %>
+
+<main class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto mb-12">
+        <h1 class="text-4xl font-bold text-center mb-8">Discover Amazing Animals</h1>
+        
+        <form action="/" method="GET" class="flex gap-2">
+            <input 
+                type="search" 
+                name="search" 
+                placeholder="Search animals by name, category, or habitat..." 
+                value="<%= searchQuery %>"
+                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            >
+            <button 
+                type="submit"
+                class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 flex items-center gap-2"
+            >
+                Search
+            </button>
+        </form>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% if (animals.length === 0) { %>
+            <div class="col-span-full text-center py-12">
+                <h2 class="text-2xl font-semibold text-gray-600 mb-4">No animals found</h2>
+                <p class="text-gray-500">Try adjusting your search terms or browse all animals.</p>
+                <a href="/" class="inline-block mt-4 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                    View All Animals
+                </a>
+            </div>
+        <% } else { %>
+            <% animals.forEach(animal => { %>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <img src="<%= animal.imageUrl %>" alt="<%= animal.name %>" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold mb-2"><%= animal.name %></h2>
+                        <p class="text-gray-600 mb-2"><em><%= animal.scientificName %></em></p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">
+                                <%= animal.category %>
+                            </span>
+                            <a href="/animal/<%= animal.id %>" class="text-green-600 hover:text-green-800 font-medium">
+                                Learn More →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+</main>
+
+<%- include('layout/footer') %>
