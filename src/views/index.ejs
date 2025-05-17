@@ -1,55 +1,346 @@
-<%- include('layout/header') %>
+<%- include('./layout/header') %>
 
-<main class="container mx-auto px-4 py-8">
-    <div class="max-w-2xl mx-auto mb-12">
-        <h1 class="text-4xl font-bold text-center mb-8">Discover Amazing Animals</h1>
-        
-        <form action="/" method="GET" class="flex gap-2">
-            <input 
-                type="search" 
-                name="search" 
-                placeholder="Search animals by name, category, or habitat..." 
-                value="<%= searchQuery %>"
-                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            >
-            <button 
-                type="submit"
-                class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 flex items-center gap-2"
-            >
-                Search
-            </button>
-        </form>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <!-- Hero Section with Improved Styling -->
+  <div class="bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-8 mb-10 text-white shadow-lg transform transition-transform hover:scale-[1.01]">
+    <div class="max-w-3xl">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Animal Encyclopedia</h1>
+      <p class="text-xl mb-6">Discover the amazing diversity of animal life on our planet</p>
+      
+      <!-- Improved Search Bar -->
+      <form action="/" method="GET" class="flex w-full max-w-md bg-white/10 p-1 rounded-lg">
+        <input 
+          type="text" 
+          name="search" 
+          value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
+          placeholder="Search for animals..." 
+          class="px-4 py-2 flex-grow rounded-l-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+        <button type="submit" class="bg-green-700 hover:bg-green-800 transition-colors px-6 py-2 rounded-r-lg font-medium flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Quick Categories with Animation -->
+  <div class="mb-12">
+    <div class="flex flex-wrap justify-between items-center mb-6">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 md:mb-0">Explore Categories</h2>
+      <a href="/categories" class="text-blue-600 hover:text-blue-800 font-medium flex items-center group">
+        View All Categories
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 transform transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <% if (animals.length === 0) { %>
-            <div class="col-span-full text-center py-12">
-                <h2 class="text-2xl font-semibold text-gray-600 mb-4">No animals found</h2>
-                <p class="text-gray-500">Try adjusting your search terms or browse all animals.</p>
-                <a href="/" class="inline-block mt-4 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-                    View All Animals
-                </a>
-            </div>
-        <% } else { %>
-            <% animals.forEach(animal => { %>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <img src="<%= animal.imageUrl %>" alt="<%= animal.name %>" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h2 class="text-xl font-semibold mb-2"><%= animal.name %></h2>
-                        <p class="text-gray-600 mb-2"><em><%= animal.scientificName %></em></p>
-                        <div class="flex justify-between items-center">
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">
-                                <%= animal.category %>
-                            </span>
-                            <a href="/animal/<%= animal.id %>" class="text-green-600 hover:text-green-800 font-medium">
-                                Learn More →
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            <% }); %>
-        <% } %>
-    </div>
-</main>
+    <!-- Scrolling category cards with continuous animation -->
+<div class="overflow-hidden">
+  <div class="category-scroller flex py-4 animate-scroll">
+    <a href="/category/Mammal" class="bg-amber-100 hover:bg-amber-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-amber-800 text-3xl mb-2 animate-bounce">🦁</span>
+        <div class="text-amber-800 font-medium">Mammals</div>
+      </div>
+    </a>
+    <a href="/category/Bird" class="bg-sky-100 hover:bg-sky-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-sky-800 text-3xl mb-2 animate-pulse">🦅</span>
+        <div class="text-sky-800 font-medium">Birds</div>
+      </div>
+    </a>
+    <a href="/category/Reptile" class="bg-green-100 hover:bg-green-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-green-800 text-3xl mb-2 animate-bounce">🐊</span>
+        <div class="text-green-800 font-medium">Reptiles</div>
+      </div>
+    </a>
+    <a href="/category/Amphibian" class="bg-teal-100 hover:bg-teal-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-teal-800 text-3xl mb-2 animate-pulse">🐸</span>
+        <div class="text-teal-800 font-medium">Amphibians</div>
+      </div>
+    </a>
+    <a href="/category/Fish" class="bg-blue-100 hover:bg-blue-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-blue-800 text-3xl mb-2 animate-bounce">🐠</span>
+        <div class="text-blue-800 font-medium">Fish</div>
+      </div>
+    </a>
+    <a href="/category/Invertebrate" class="bg-purple-100 hover:bg-purple-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-purple-800 text-3xl mb-2 animate-pulse">🦋</span>
+        <div class="text-purple-800 font-medium">Invertebrates</div>
+      </div>
+    </a>
+    <!-- Duplicate cards for continuous scrolling effect -->
+    <a href="/category/Mammal" class="bg-amber-100 hover:bg-amber-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-amber-800 text-3xl mb-2 animate-bounce">🦁</span>
+        <div class="text-amber-800 font-medium">Mammals</div>
+      </div>
+    </a>
+    <a href="/category/Bird" class="bg-sky-100 hover:bg-sky-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-sky-800 text-3xl mb-2 animate-pulse">🦅</span>
+        <div class="text-sky-800 font-medium">Birds</div>
+      </div>
+    </a>
+    <a href="/category/Reptile" class="bg-green-100 hover:bg-green-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-green-800 text-3xl mb-2 animate-bounce">🐊</span>
+        <div class="text-green-800 font-medium">Reptiles</div>
+      </div>
+    </a>
+    <a href="/category/Amphibian" class="bg-teal-100 hover:bg-teal-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-teal-800 text-3xl mb-2 animate-pulse">🐸</span>
+        <div class="text-teal-800 font-medium">Amphibians</div>
+      </div>
+    </a>
+    <a href="/category/Fish" class="bg-blue-100 hover:bg-blue-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-blue-800 text-3xl mb-2 animate-bounce">🐠</span>
+        <div class="text-blue-800 font-medium">Fish</div>
+      </div>
+    </a>
+    <a href="/category/Invertebrate" class="bg-purple-100 hover:bg-purple-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 shadow-sm hover:shadow-md min-w-[150px] mx-2 flex-shrink-0">
+      <div class="flex flex-col items-center">
+        <span class="text-purple-800 text-3xl mb-2 animate-pulse">🦋</span>
+        <div class="text-purple-800 font-medium">Invertebrates</div>
+      </div>
+    </a>
+  </div>
+</div>
 
-<%- include('layout/footer') %>
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
+  
+  .category-scroller:hover {
+    animation-play-state: paused;
+  }
+</style>
+
+  <!-- Conservation Status Section with Improved Visual Appeal -->
+  <div class="mb-12">
+    <div class="flex flex-wrap justify-between items-center mb-6">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 md:mb-0">Conservation Status</h2>
+      <a href="/conservation" class="text-blue-600 hover:text-blue-800 font-medium flex items-center group">
+        View All
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 transform transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <a href="/conservation/Endangered" class="group relative bg-red-100 hover:bg-red-200 p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all">
+        <div class="absolute top-0 right-0 bg-red-500 w-3 h-3 rounded-full mt-2 mr-2"></div>
+        <div class="text-red-800 font-medium group-hover:font-semibold transition-all">Endangered</div>
+        <div class="text-red-600 text-xs mt-1">High risk of extinction</div>
+      </a>
+      <a href="/conservation/Vulnerable" class="group relative bg-orange-100 hover:bg-orange-200 p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all">
+        <div class="absolute top-0 right-0 bg-orange-500 w-3 h-3 rounded-full mt-2 mr-2"></div>
+        <div class="text-orange-800 font-medium group-hover:font-semibold transition-all">Vulnerable</div>
+        <div class="text-orange-600 text-xs mt-1">At risk of endangerment</div>
+      </a>
+      <a href="/conservation/Near Threatened" class="group relative bg-yellow-100 hover:bg-yellow-200 p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all">
+        <div class="absolute top-0 right-0 bg-yellow-500 w-3 h-3 rounded-full mt-2 mr-2"></div>
+        <div class="text-yellow-800 font-medium group-hover:font-semibold transition-all">Near Threatened</div>
+        <div class="text-yellow-600 text-xs mt-1">Likely to become endangered</div>
+      </a>
+      <a href="/conservation/Least Concern" class="group relative bg-green-100 hover:bg-green-200 p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all">
+        <div class="absolute top-0 right-0 bg-green-500 w-3 h-3 rounded-full mt-2 mr-2"></div>
+        <div class="text-green-800 font-medium group-hover:font-semibold transition-all">Least Concern</div>
+        <div class="text-green-600 text-xs mt-1">Population is stable</div>
+      </a>
+      <a href="/conservation/Extinct" class="group relative bg-gray-100 hover:bg-gray-200 p-5 rounded-lg text-center shadow-sm hover:shadow-md transition-all">
+        <div class="absolute top-0 right-0 bg-gray-500 w-3 h-3 rounded-full mt-2 mr-2"></div>
+        <div class="text-gray-800 font-medium group-hover:font-semibold transition-all">Extinct</div>
+        <div class="text-gray-600 text-xs mt-1">No longer exists</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Featured Animals Section with Improved Cards -->
+  <div class="mb-12">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Featured Animals</h2>
+    
+    <% if (typeof animals !== 'undefined' && animals && animals.length > 0) { %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% animals.slice(0, 6).forEach(animal => { %>
+          <a href="/animal/<%= animal._id %>" class="block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all hover:translate-y-[-5px]">
+            <div class="h-48 overflow-hidden relative">
+              <img src="<%= animal.imageUrl %>" alt="<%= animal.name %>" class="w-full h-full object-cover transform transition-transform group-hover:scale-105">
+              <div class="absolute bottom-0 right-0 p-2">
+                <% if (animal.conservationStatus) { %>
+                  <span class="inline-block px-2 py-1 rounded text-xs font-medium
+                    <%= animal.conservationStatus === 'Least Concern' ? 'bg-green-100 text-green-800' : 
+                       animal.conservationStatus === 'Near Threatened' ? 'bg-yellow-100 text-yellow-800' : 
+                       animal.conservationStatus === 'Vulnerable' ? 'bg-orange-100 text-orange-800' : 
+                       animal.conservationStatus === 'Endangered' ? 'bg-red-100 text-red-800' : 
+                       'bg-gray-100 text-gray-800' %>">
+                    <%= animal.conservationStatus %>
+                  </span>
+                <% } %>
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-lg font-bold text-gray-800 hover:text-blue-600 transition-colors"><%= animal.name %></h3>
+                  <p class="text-sm text-gray-500 italic mb-2"><%= animal.scientificName %></p>
+                </div>
+                <span class="inline-block bg-gray-100 px-2 py-1 rounded text-xs text-gray-700"><%= animal.category %></span>
+              </div>
+              
+              <% if (animal.description && animal.description.length > 0) { %>
+                <p class="text-gray-600 text-sm mt-2 line-clamp-2"><%= animal.description.substring(0, 100) %>...</p>
+              <% } %>
+            </div>
+          </a>
+        <% }); %>
+      </div>
+      
+      <% if (animals.length > 6) { %>
+        <div class="mt-8 text-center">
+          <a href="/animals" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:translate-y-[-2px]">
+            View All Animals
+          </a>
+        </div>
+      <% } %>
+    <% } else { %>
+      <div class="text-center py-16 bg-gray-50 rounded-lg border border-gray-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+        </svg>
+        <% if (typeof searchQuery !== 'undefined' && searchQuery) { %>
+          <p class="text-lg text-gray-600 mb-2">No animals found matching "<%= searchQuery %>"</p>
+          <a href="/" class="mt-4 inline-block text-blue-600 hover:text-blue-800 font-medium">Clear search</a>
+        <% } else { %>
+          <p class="text-lg text-gray-600 mb-2">No animals in the database yet</p>
+          <a href="/upload" class="mt-4 inline-block bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition-all">
+            Add First Animal
+          </a>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+  
+  <!-- Habitats Section with Improved Visuals -->
+  <div class="mb-12">
+    <div class="flex flex-wrap justify-between items-center mb-6">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 md:mb-0">Explore Habitats</h2>
+      <a href="/habitats" class="text-blue-600 hover:text-blue-800 font-medium flex items-center group">
+        View All Habitats
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 transform transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <a href="/habitat/Ocean" class="relative h-48 rounded-lg overflow-hidden group shadow-md">
+        <img src="/images/habitats/ocean.jpg" alt="Ocean" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end transition-opacity group-hover:opacity-90">
+          <div class="p-4 text-white">
+            <div class="font-bold text-xl mb-1 group-hover:translate-y-[-5px] transition-transform">Ocean</div>
+            <p class="text-sm text-white/90 opacity-0 group-hover:opacity-100 transition-all">Explore marine life and ecosystems</p>
+          </div>
+        </div>
+      </a>
+      <a href="/habitat/Rainforest" class="relative h-48 rounded-lg overflow-hidden group shadow-md">
+        <img src="/images/habitats/rainforest.jpg" alt="Rainforest" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end transition-opacity group-hover:opacity-90">
+          <div class="p-4 text-white">
+            <div class="font-bold text-xl mb-1 group-hover:translate-y-[-5px] transition-transform">Rainforest</div>
+            <p class="text-sm text-white/90 opacity-0 group-hover:opacity-100 transition-all">Discover tropical biodiversity</p>
+          </div>
+        </div>
+      </a>
+      <a href="/habitat/Desert" class="relative h-48 rounded-lg overflow-hidden group shadow-md">
+        <img src="/images/habitats/desert.jpg" alt="Desert" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end transition-opacity group-hover:opacity-90">
+          <div class="p-4 text-white">
+            <div class="font-bold text-xl mb-1 group-hover:translate-y-[-5px] transition-transform">Desert</div>
+            <p class="text-sm text-white/90 opacity-0 group-hover:opacity-100 transition-all">Learn about arid environment adaptations</p>
+          </div>
+        </div>
+      </a>
+      <a href="/habitat/Arctic" class="relative h-48 rounded-lg overflow-hidden group shadow-md">
+        <img src="/images/habitats/arctic.jpg" alt="Arctic" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end transition-opacity group-hover:opacity-90">
+          <div class="p-4 text-white">
+            <div class="font-bold text-xl mb-1 group-hover:translate-y-[-5px] transition-transform">Arctic</div>
+            <p class="text-sm text-white/90 opacity-0 group-hover:opacity-100 transition-all">Explore extreme cold weather species</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  
+  <!-- Tools & Features with Interactive Cards -->
+  <div class="mb-8">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Tools & Features</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="/compare" class="flex items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all hover:translate-y-[-3px] group">
+        <div class="bg-blue-100 p-4 rounded-full mr-5 group-hover:bg-blue-200 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors">Compare Animals</h3>
+          <p class="text-gray-600">Compare size, habitat, diet, and other characteristics</p>
+        </div>
+      </a>
+      
+      <a href="/quiz" class="flex items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all hover:translate-y-[-3px] group">
+        <div class="bg-purple-100 p-4 rounded-full mr-5 group-hover:bg-purple-200 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-gray-800 group-hover:text-purple-600 transition-colors">Animal Quiz</h3>
+          <p class="text-gray-600">Test your knowledge about different animal species</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  
+  
+<%- include('./layout/footer') %>
+
+<!-- Add some additional JS for interactivity -->
+<script>
+  // Scroll animation for elements
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add smooth scrolling to all links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  });
+</script>

@@ -1,38 +1,454 @@
-<%- include('layout/header') %>
+<!-- Scrolling category cards with continuous animation --> <div class="overflow-hidden"> <div class="category-scroller flex py-4 animate-scroll"> <a href="/category/Mammal" class="bg-amber-100 hover:bg-amber-200 p-4 rounded-lg text-center transform transition-all hover:scale-1
 
-<main class="container mx-auto px-4 py-8">
-    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="<%= animal.imageUrl %>" alt="<%= animal.name %>" class="w-full h-96 object-cover">
-        <div class="p-6">
-            <h1 class="text-4xl font-bold mb-2"><%= animal.name %></h1>
-            <p class="text-gray-600 italic mb-4"><%= animal.scientificName %></p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                    <h2 class="text-xl font-semibold mb-2">Classification</h2>
-                    <p class="mb-2"><strong>Category:</strong> <%= animal.category %></p>
-                    <p><strong>Conservation Status:</strong> 
-                        <span class="<%= animal.conservationStatus === 'Endangered' ? 'text-red-600' : 'text-green-600' %>">
-                            <%= animal.conservationStatus %>
-                        </span>
-                    </p>
-                </div>
-                <div>
-                    <h2 class="text-xl font-semibold mb-2">Habitat</h2>
-                    <p><%= animal.habitat %></p>
-                </div>
-            </div>
-            
-            <div class="mb-6">
-                <h2 class="text-xl font-semibold mb-2">Description</h2>
-                <p class="text-gray-700"><%= animal.description %></p>
-            </div>
-            
-            <a href="/" class="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-                ← Back to All Animals
-            </a>
-        </div>
+pasted
+
+Mammals → Birds → Reptiles → Amphibians → Fish → Invertebrates → Mammals (repeating)  without gap i want one line run tha immediately run no gap all are as loop
+
+I'll create a continuously scrolling row of animal category cards that seamlessly loops without any gaps. This will use a horizontal auto-scrolling animation that pauses on hover.
+
+
+Animal Categories Continuous Scroll
+Interactive artifact 
+I've created a continuous scrolling row of animal category cards that runs in a seamless loop without any gaps. The categories (Mammals → Birds → Reptiles → Amphibians → Fish → Invertebrates) repeat infinitely in a smooth animation.
+
+Features:
+
+Seamless looping animation (no visible gaps or jumps)
+Each category has a distinct color scheme and matching emoji
+Animation pauses when you hover over the categories
+Cards slightly enlarge on hover for better interactivity
+Fully responsive design
+The component uses React with Tailwind CSS for styling and applies custom CSS animations to create the continuous scrolling effect. To achieve the seamless loop, I've duplicated the set of cards so that when the first set scrolls out of view, the second identical set has already begun appearing.
+
+Would you like me to adjust anything about the speed, spacing, or visual style of the scrolling categories?
+
+
+
+
+this one issue like end than few second wait i want not dealy only loop without a second
+
+I understand the issue - there's a brief pause or delay at the end of the animation before it loops again. Let me fix that to create a truly seamless loop with no delay whatsoever.
+
+
+Animal Categories Continuous Scroll
+Interactive artifact ∙ Version 2 
+I've fixed the animation to create a truly seamless loop with absolutely no delay or pause at the end of each cycle. The categories now scroll continuously without any interruption.
+
+Key improvements:
+
+Fixed the animation calculation to use precise pixel values instead of CSS calc
+Made the animation timing more accurate by using exact pixel measurements for each card
+Used helper functions to properly render the Tailwind classes (which fixed potential display issues)
+Added padding to ensure consistent visibility
+Decreased the animation time to 15 seconds for a smoother appearance
+The animal categories now flow from Mammals → Birds → Reptiles → Amphibians → Fish → Invertebrates → and back to Mammals in a perfect continuous loop with no visible gaps or delays. The animation will run indefinitely until you hover over it (which pauses the animation for easier interaction).
+
+Would you like me to adjust anything else about the scrolling effect, such as speed or card appearance?
+
+
+
+
+
+<!-- Scrolling category cards with continuous animation --> <div class="overflow-hidden"> <div class="category-scroller flex py-4 animate-scroll"> <a href="/category/Mammal" class="bg-amber-100 hover:bg-amber-200 p-4 rounded-lg text-center transform transition-all hover:scale-105 s
+
+pasted
+
+same code write a give format
+
+I'll rewrite the scrolling category cards in the exact format provided in your example with standard HTML and CSS (not React).
+
+
+Animal Categories HTML Scroll
+Interactive artifact 
+I've created the continuous scrolling category cards using the exact format you provided with standard HTML and CSS with Tailwind classes.
+
+Key features of this implementation:
+
+Uses the same HTML structure with category cards featuring colored backgrounds and emojis
+Each card has the same transform effects on hover (scale-up and shadow)
+Includes the bounce/pulse animations on the emoji icons
+Uses the CSS animation technique with transform: translateX(-50%) for seamless looping
+Animation pauses when hovering over the cards
+Includes duplicate cards to create the continuous scrolling effect
+The animation runs continuously without gaps or delays, creating a seamless scrolling effect. I've slightly adjusted the animation speed to 20 seconds for smoother scrolling, but you can easily change this by modifying the 20s value in the CSS to your preference.
+
+All the original formatting, class names, and structure have been preserved as in your example.
+
+
+
+
+
+<%- include('./layout/header') %> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"> <div class="mb-8"> <h1 class="text-3xl font-bold text-gray-800 mb-4"><%= animal.name %></h1> <p class="text-xl text-gray-500 italic"><%= animal.scientificName %></p> </div> <div class="grid
+
+pasted
+
+This is a not good animation and form can you write a best ui best aniamation good text best
+
+I'll create an enhanced version of the animal details page with better UI design, animations, and improved text presentation.
+
+
+Enhanced Animal Details Page
+Interactive artifact 
+I've created a completely redesigned animal details page with enhanced UI, beautiful animations, and much better text presentation. Here are the key improvements:
+
+Visual Design & UI Improvements
+Striking Hero Section: Added a gradient background with subtle overlay for better text readability
+Rounded Cards: Used rounded-xl for a more modern look on all containers
+Hover Effects: Added subtle scaling and shadow effects on hover for interactive elements
+Card Animation: Cards now animate in as they appear on the page
+Icon Integration: Added appropriate icons throughout the page to improve visual appeal
+Color-Coding: Enhanced the conservation status color coding for better visual understanding
+Progress Bar: Added a progress bar for conservation status
+Animation Enhancements
+Fade-In Animations: Hero content elements fade in sequentially for a professional entrance
+Card Entrance Animation: Related animals now animate in sequentially with a smooth entrance effect
+Hover Transforms: Cards and buttons have subtle transform effects on hover
+Loading States: Added animated skeleton loaders for related animals during loading
+Image Hover Zoom: Animal images zoom slightly when hovered for an interactive effect
+Smooth Transitions: All hover states have smooth transitions
+Text Improvements
+Typography Upgrade: Better font sizing and spacing hierarchy
+First-Letter Style: Added drop cap styling to the description text
+Enhanced Description: Improved conservation status descriptions with more informative content
+Better Status Presentation: Conservation status is shown with colorfu
+
+
+
+<%- include('./layout/header') %>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <!-- Animated Hero Section -->
+  <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 mb-12 shadow-xl">
+    <div class="absolute inset-0 bg-black opacity-30"></div>
+    <div class="relative z-10 px-8 py-16 md:px-16 md:py-20 text-white">
+      <h1 class="text-4xl md:text-5xl font-bold mb-3 animate-fadeIn"><%= animal.name %></h1>
+      <p class="text-xl md:text-2xl italic font-light animate-fadeIn animation-delay-200">
+        <span class="backdrop-blur-sm bg-black/30 px-3 py-1 rounded-lg"><%= animal.scientificName %></span>
+      </p>
+      
+      <div class="mt-6 inline-flex items-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-sm animate-fadeIn animation-delay-400">
+        <span class="inline-block w-3 h-3 rounded-full
+          <%= animal.conservationStatus === 'Least Concern' ? 'bg-green-400' : 
+             animal.conservationStatus === 'Near Threatened' ? 'bg-yellow-400' : 
+             animal.conservationStatus === 'Vulnerable' ? 'bg-orange-400' : 
+             animal.conservationStatus === 'Endangered' ? 'bg-red-400' : 
+             'bg-gray-400' %> mr-2 animate-pulse"></span>
+        <span><%= animal.conservationStatus || 'Status Unknown' %></span>
+      </div>
     </div>
-</main>
+  </div>
+  
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+    <!-- Left Column - Image and Key Info -->
+    <div class="lg:col-span-2">
+      <div class="bg-white rounded-xl overflow-hidden shadow-lg mb-6 transform transition duration-300 hover:scale-[1.02] hover:shadow-xl">
+        <div class="relative">
+          <img src="<%= animal.imageUrl %>" alt="<%= animal.name %>" class="w-full h-72 md:h-96 object-cover">
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+            <span class="inline-block px-3 py-1 rounded-lg bg-white/90 text-gray-800 font-medium shadow-sm">
+              <%= animal.category %>
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-xl shadow-lg p-6 transform transition duration-300 hover:shadow-xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Key Information
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg transition-all hover:bg-blue-50">
+            <span class="text-gray-600 font-medium">Category:</span>
+            <span class="font-semibold text-gray-900 px-3 py-1 rounded-full bg-blue-100"><%= animal.category %></span>
+          </div>
+          
+          <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg transition-all hover:bg-green-50">
+            <span class="text-gray-600 font-medium">Habitat:</span>
+            <a href="/habitat/<%= encodeURIComponent(animal.habitat) %>" class="font-semibold text-blue-600 hover:text-blue-800 hover:underline px-3 py-1 rounded-full bg-green-100">
+              <%= animal.habitat %>
+            </a>
+          </div>
+          
+          <% if (animal.conservationStatus) { %>
+          <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg transition-all 
+            <%= animal.conservationStatus === 'Least Concern' ? 'hover:bg-green-50' : 
+               animal.conservationStatus === 'Near Threatened' ? 'hover:bg-yellow-50' : 
+               animal.conservationStatus === 'Vulnerable' ? 'hover:bg-orange-50' : 
+               animal.conservationStatus === 'Endangered' ? 'hover:bg-red-50' : 
+               'hover:bg-gray-100' %>">
+            <span class="text-gray-600 font-medium">Conservation Status:</span>
+            <span class="font-semibold px-3 py-1 rounded-full
+              <%= animal.conservationStatus === 'Least Concern' ? 'bg-green-100 text-green-800' : 
+                 animal.conservationStatus === 'Near Threatened' ? 'bg-yellow-100 text-yellow-800' : 
+                 animal.conservationStatus === 'Vulnerable' ? 'bg-orange-100 text-orange-800' : 
+                 animal.conservationStatus === 'Endangered' ? 'bg-red-100 text-red-800' : 
+                 'bg-gray-100 text-gray-800' %>">
+              <%= animal.conservationStatus %>
+            </span>
+          </div>
+          <% } %>
+        </div>
+        
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <a href="/compare?animal1=<%= animal._id %>" class="group block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-xl shadow transition-all hover:shadow-lg">
+            <span class="flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 transform group-hover:rotate-12 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
+              </svg>
+              Compare with Another Animal
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Right Column - Description and Related -->
+    <div class="lg:col-span-3">
+      <div class="bg-white rounded-xl shadow-lg p-8 mb-6 transform transition duration-300 hover:shadow-xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          About <%= animal.name %>
+        </h2>
+        
+        <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+          <p class="first-letter:text-5xl first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:text-blue-600"><%= animal.description %></p>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-xl shadow-lg p-8 transform transition duration-300 hover:shadow-xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+          Conservation Information
+        </h2>
+        
+        <% if (animal.conservationStatus) { %>
+          <div class="mb-6">
+            <div class="flex items-center mb-4">
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="h-2.5 rounded-full <%= animal.conservationStatus === 'Least Concern' ? 'bg-green-500 w-1/5' : 
+                   animal.conservationStatus === 'Near Threatened' ? 'bg-yellow-500 w-2/5' : 
+                   animal.conservationStatus === 'Vulnerable' ? 'bg-orange-500 w-3/5' : 
+                   animal.conservationStatus === 'Endangered' ? 'bg-red-500 w-4/5' : 
+                   animal.conservationStatus === 'Critically Endangered' ? 'bg-red-600 w-full' :
+                   'bg-gray-500 w-1/5' %>"></div>
+              </div>
+            </div>
+            
+            <div class="flex items-center mb-4 p-4 rounded-lg <%= animal.conservationStatus === 'Least Concern' ? 'bg-green-50' : 
+               animal.conservationStatus === 'Near Threatened' ? 'bg-yellow-50' : 
+               animal.conservationStatus === 'Vulnerable' ? 'bg-orange-50' : 
+               animal.conservationStatus === 'Endangered' ? 'bg-red-50' : 
+               'bg-gray-50' %>">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full
+                <%= animal.conservationStatus === 'Least Concern' ? 'bg-green-100 text-green-600' : 
+                   animal.conservationStatus === 'Near Threatened' ? 'bg-yellow-100 text-yellow-600' : 
+                   animal.conservationStatus === 'Vulnerable' ? 'bg-orange-100 text-orange-600' : 
+                   animal.conservationStatus === 'Endangered' ? 'bg-red-100 text-red-600' : 
+                   'bg-gray-100 text-gray-600' %> mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </span>
+              <span class="font-medium text-lg"><%= animal.conservationStatus %></span>
+            </div>
+            
+            <% 
+              let conservationInfo = "";
+              if (animal.conservationStatus === 'Endangered') {
+                conservationInfo = "This species faces a very high risk of extinction in the wild. Conservation efforts are critical for its survival.";
+              } else if (animal.conservationStatus === 'Vulnerable') {
+                conservationInfo = "This species faces a high risk of endangerment in the wild. Ongoing monitoring and conservation actions are important.";
+              } else if (animal.conservationStatus === 'Near Threatened') {
+                conservationInfo = "This species may be considered threatened in the near future. Preventative measures should be implemented.";
+              } else if (animal.conservationStatus === 'Least Concern') {
+                conservationInfo = "This species has a lower risk of extinction at present. However, continued monitoring is still important.";
+              } else if (animal.conservationStatus === 'Extinct') {
+                conservationInfo = "This species no longer exists. It has been completely lost from Earth.";
+              }
+            %>
+            
+            <p class="text-gray-700 text-lg leading-relaxed"><%= conservationInfo %></p>
+          </div>
+          
+          <div class="mt-6">
+            <a href="/conservation/<%= encodeURIComponent(animal.conservationStatus) %>" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group">
+              <span>See all <%= animal.conservationStatus %> animals</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        <% } else { %>
+          <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-gray-700 text-lg">No conservation status information available for this animal.</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Related Animals Section -->
+  <div class="mt-16">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+      More <%= animal.category %> Animals
+    </h2>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="related-animals">
+      <!-- This will be populated with related animals from the same category -->
+      <!-- Animated skeleton loading state -->
+      <div class="animate-pulse bg-white rounded-xl overflow-hidden shadow-md">
+        <div class="h-40 bg-gray-300"></div>
+        <div class="p-4">
+          <div class="h-5 bg-gray-300 rounded mb-2"></div>
+          <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+        </div>
+      </div>
+      <div class="animate-pulse bg-white rounded-xl overflow-hidden shadow-md">
+        <div class="h-40 bg-gray-300"></div>
+        <div class="p-4">
+          <div class="h-5 bg-gray-300 rounded mb-2"></div>
+          <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+        </div>
+      </div>
+      <div class="animate-pulse bg-white rounded-xl overflow-hidden shadow-md">
+        <div class="h-40 bg-gray-300"></div>
+        <div class="p-4">
+          <div class="h-5 bg-gray-300 rounded mb-2"></div>
+          <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+        </div>
+      </div>
+      <div class="animate-pulse bg-white rounded-xl overflow-hidden shadow-md">
+        <div class="h-40 bg-gray-300"></div>
+        <div class="p-4">
+          <div class="h-5 bg-gray-300 rounded mb-2"></div>
+          <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%- include('layout/footer') %>
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes cardEntrance {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .card-entrance {
+    animation: cardEntrance 0.4s ease-out forwards;
+  }
+</style>
+
+<script>
+  // Fetch related animals from the same category with improved animation
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('/api/animals?category=<%= encodeURIComponent(animal.category) %>&exclude=<%= animal._id %>&limit=4')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('related-animals');
+        container.innerHTML = ''; // Clear skeleton loaders
+        
+        if (data.length === 0) {
+          container.innerHTML = `
+            <div class="col-span-full flex flex-col items-center justify-center text-center p-10">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="text-lg text-gray-600">No related animals found</p>
+            </div>
+          `;
+          return;
+        }
+        
+        data.forEach((animal, index) => {
+          const card = document.createElement('a');
+          card.href = `/animal/${animal._id}`;
+          card.className = 'block bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 opacity-0';
+          card.style.animationDelay = `${index * 0.1}s`;
+          
+          card.innerHTML = `
+            <div class="relative h-48 overflow-hidden">
+              <img src="${animal.imageUrl}" alt="${animal.name}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            <div class="p-4">
+              <h3 class="text-lg font-bold text-gray-800 mb-1">${animal.name}</h3>
+              <p class="text-sm text-gray-500 italic">${animal.scientificName}</p>
+              
+              <div class="mt-3 pt-3 border-t border-gray-100 flex justify-between items-center">
+                <span class="text-sm text-gray-600">${animal.habitat || 'Unknown habitat'}</span>
+                <span class="text-xs px-2 py-1 rounded-full 
+                  ${animal.conservationStatus === 'Least Concern' ? 'bg-green-100 text-green-800' : 
+                    animal.conservationStatus === 'Near Threatened' ? 'bg-yellow-100 text-yellow-800' : 
+                    animal.conservationStatus === 'Vulnerable' ? 'bg-orange-100 text-orange-800' : 
+                    animal.conservationStatus === 'Endangered' ? 'bg-red-100 text-red-800' : 
+                    'bg-gray-100 text-gray-800'}">
+                  ${animal.conservationStatus || 'Unknown'}
+                </span>
+              </div>
+            </div>
+          `;
+          
+          container.appendChild(card);
+          
+          // Add entrance animation
+          setTimeout(() => {
+            card.classList.add('card-entrance');
+          }, 50);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching related animals:', error);
+        document.getElementById('related-animals').innerHTML = `
+          <div class="col-span-full flex flex-col items-center justify-center text-center p-10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-red-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-lg text-gray-600">Failed to load related animals</p>
+            <button onclick="location.reload()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+              Try Again
+            </button>
+          </div>
+        `;
+      });
+  });
+</script>
+
+<%- include('./layout/footer') %>

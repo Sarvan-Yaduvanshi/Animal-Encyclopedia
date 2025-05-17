@@ -1,86 +1,140 @@
-<%- include('layout/header') %>
+<%- include('./layout/header') %>
 
-<main class="container mx-auto px-4 py-8">
-    <div class="max-w-2xl mx-auto">
-        <h1 class="text-3xl font-bold text-center mb-8">Add New Animal</h1>
-        
-        <form action="/upload" method="POST" enctype="multipart/form-data" class="bg-white rounded-lg shadow-md p-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-4">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" id="name" name="name" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                    </div>
-                    
-                    <div>
-                        <label for="scientificName" class="block text-sm font-medium text-gray-700">Scientific Name</label>
-                        <input type="text" id="scientificName" name="scientificName" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                    </div>
-                    
-                    <div>
-                        <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-                        <select id="category" name="category" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                            <option value="">Select a category</option>
-                            <option value="Mammal">Mammal</option>
-                            <option value="Bird">Bird</option>
-                            <option value="Reptile">Reptile</option>
-                            <option value="Amphibian">Amphibian</option>
-                            <option value="Fish">Fish</option>
-                            <option value="Invertebrate">Invertebrate</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label for="habitat" class="block text-sm font-medium text-gray-700">Habitat</label>
-                        <input type="text" id="habitat" name="habitat" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                    </div>
-                </div>
-                
-                <div class="space-y-4">
-                    <div>
-                        <label for="conservationStatus" class="block text-sm font-medium text-gray-700">Conservation Status</label>
-                        <select id="conservationStatus" name="conservationStatus" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                            <option value="">Select status</option>
-                            <option value="Extinct">Extinct</option>
-                            <option value="Endangered">Endangered</option>
-                            <option value="Vulnerable">Vulnerable</option>
-                            <option value="Near Threatened">Near Threatened</option>
-                            <option value="Least Concern">Least Concern</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
-                        <input type="file" id="image" name="image" accept="image/*" required
-                            class="mt-1 block w-full text-sm text-gray-500
-                                file:mr-4 file:py-2 file:px-4
-                                file:rounded-md file:border-0
-                                file:text-sm file:font-semibold
-                                file:bg-green-50 file:text-green-700
-                                hover:file:bg-green-100">
-                    </div>
-                    
-                    <div class="col-span-2">
-                        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                        <textarea id="description" name="description" rows="4" required
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"></textarea>
-                    </div>
-                </div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <h1 class="text-3xl font-bold text-gray-800 mb-8">Add New Animal</h1>
+  
+  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <form action="/upload" method="POST" enctype="multipart/form-data" class="p-6">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <!-- Basic Information -->
+        <div class="col-span-full md:col-span-1">
+          <h2 class="text-lg font-medium text-gray-800 mb-4">Basic Information</h2>
+          
+          <div class="space-y-4">
+            <!-- Name -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+              <input type="text" id="name" name="name" required
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
             </div>
             
-            <div class="mt-6 flex justify-end space-x-3">
-                <a href="/" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">Cancel</a>
-                <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
-                    Add Animal
-                </button>
+            <!-- Scientific Name -->
+            <div>
+              <label for="scientificName" class="block text-sm font-medium text-gray-700 mb-1">Scientific Name</label>
+              <input type="text" id="scientificName" name="scientificName" required
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
             </div>
-        </form>
-    </div>
-</main>
+            
+            <!-- Category -->
+            <div>
+              <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+              <select id="category" name="category" required
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                <option value="">Select a category</option>
+                <option value="Mammal">Mammal</option>
+                <option value="Bird">Bird</option>
+                <option value="Reptile">Reptile</option>
+                <option value="Amphibian">Amphibian</option>
+                <option value="Fish">Fish</option>
+                <option value="Invertebrate">Invertebrate</option>
+              </select>
+            </div>
+            
+            <!-- Habitat -->
+            <div>
+              <label for="habitat" class="block text-sm font-medium text-gray-700 mb-1">Habitat</label>
+              <input type="text" id="habitat" name="habitat" required
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                placeholder="e.g. Ocean, Rainforest, Desert, etc.">
+            </div>
+            
+            <!-- Conservation Status -->
+            <div>
+              <label for="conservationStatus" class="block text-sm font-medium text-gray-700 mb-1">Conservation Status</label>
+              <select id="conservationStatus" name="conservationStatus"
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                <option value="">Select a status (optional)</option>
+                <option value="Least Concern">Least Concern</option>
+                <option value="Near Threatened">Near Threatened</option>
+                <option value="Vulnerable">Vulnerable</option>
+                <option value="Endangered">Endangered</option>
+                <option value="Extinct">Extinct</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Description and Image -->
+        <div class="col-span-full md:col-span-1">
+          <h2 class="text-lg font-medium text-gray-800 mb-4">Description & Image</h2>
+          
+          <div class="space-y-4">
+            <!-- Description -->
+            <div>
+              <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+              <textarea id="description" name="description" rows="5" required
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                placeholder="Provide information about this animal..."></textarea>
+            </div>
+            
+            <!-- Image Upload -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Image</label>
+              <div class="mt-1 flex items-center">
+                <div id="imagePreviewContainer" class="hidden mb-3">
+                  <img id="imagePreview" class="h-32 w-32 object-cover rounded-md" alt="Image preview">
+                </div>
+              </div>
+              
+              <div class="mt-1">
+                <label for="image" class="inline-block w-full px-6 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer">
+                  <span>Upload an image</span>
+                  <input id="image" name="image" type="file" accept="image/*" required class="sr-only">
+                </label>
+                <p class="mt-1 text-xs text-gray-500">
+                  JPG, PNG, GIF up to a maximum of 10MB
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-8 flex justify-end">
+        <a href="/" class="mr-3 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          Cancel
+        </a>
+        <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          Add Animal
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
 
-<%- include('layout/footer') %>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.getElementById('imagePreview');
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+    
+    imageInput.addEventListener('change', function() {
+      const file = this.files[0];
+      
+      if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          imagePreview.src = e.target.result;
+          imagePreviewContainer.classList.remove('hidden');
+        }
+        
+        reader.readAsDataURL(file);
+      } else {
+        imagePreviewContainer.classList.add('hidden');
+      }
+    });
+  });
+</script>
+
+<%- include('./layout/footer') %>

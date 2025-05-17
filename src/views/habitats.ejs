@@ -1,0 +1,32 @@
+<%- include('./layout/header') %>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <h1 class="text-3xl font-bold text-gray-800 mb-8">Habitats</h1>
+  
+  <div class="mb-8 bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Explore Animal Habitats</h2>
+    <p class="text-gray-700">
+      Habitats are natural environments where plants, animals, and other organisms live. 
+      They provide the necessary food, water, shelter, and space for species to survive and thrive.
+      Explore the diverse habitats below to discover the animals that call these environments home.
+    </p>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% habitats.forEach(habitat => { %>
+      <a href="/habitat/<%= encodeURIComponent(habitat.name) %>" class="block">
+        <div class="relative h-60 rounded-lg overflow-hidden group">
+          <img src="/images/habitats/<%= habitat.image || 'default.jpg' %>" alt="<%= habitat.name %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+            <div class="p-6">
+              <h3 class="text-white font-bold text-xl mb-1"><%= habitat.name %></h3>
+              <p class="text-white/80 text-sm"><%= habitat.count %> animals</p>
+            </div>
+          </div>
+        </div>
+      </a>
+    <% }); %>
+  </div>
+</div>
+
+<%- include('./layout/footer') %>

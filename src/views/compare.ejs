@@ -1,0 +1,197 @@
+<%- include('./layout/header') %>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <h1 class="text-3xl font-bold text-gray-800 mb-8">Compare Animals</h1>
+  
+  <div class="mb-8 bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Select Animals to Compare</h2>
+    
+    <form id="compare-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label for="animal1" class="block text-gray-700 font-medium mb-2">First Animal</label>
+        <select id="animal1" name="animal1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <option value="">Select an animal</option>
+          <% if (animals && animals.length > 0) { %>
+            <% animals.forEach(animal => { %>
+              <option value="<%= animal._id %>" <%= (selectedAnimal1 && selectedAnimal1._id.toString() === animal._id.toString()) ? 'selected' : '' %>>
+                <%= animal.name %>
+              </option>
+            <% }); %>
+          <% } %>
+        </select>
+      </div>
+      
+      <div>
+        <label for="animal2" class="block text-gray-700 font-medium mb-2">Second Animal</label>
+        <select id="animal2" name="animal2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <option value="">Select an animal</option>
+          <% if (animals && animals.length > 0) { %>
+            <% animals.forEach(animal => { %>
+              <option value="<%= animal._id %>" <%= (selectedAnimal2 && selectedAnimal2._id.toString() === animal._id.toString()) ? 'selected' : '' %>>
+                <%= animal.name %>
+              </option>
+            <% }); %>
+          <% } %>
+        </select>
+      </div>
+      
+      <div class="md:col-span-2 text-center">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-lg">
+          Compare
+        </button>
+      </div>
+    </form>
+  </div>
+  
+  <% if (selectedAnimal1 && selectedAnimal2) { %>
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="grid grid-cols-3">
+        <!-- Header -->
+        <div class="p-6 bg-gray-50 border-b border-gray-200">
+          <h2 class="text-lg font-bold text-gray-800">Characteristics</h2>
+        </div>
+        
+        <div class="p-6 bg-blue-50 border-b border-gray-200 text-center">
+          <h2 class="text-lg font-bold text-blue-800"><%= selectedAnimal1.name %></h2>
+        </div>
+        
+        <div class="p-6 bg-green-50 border-b border-gray-200 text-center">
+          <h2 class="text-lg font-bold text-green-800"><%= selectedAnimal2.name %></h2>
+        </div>
+        
+        <!-- Image Row -->
+        <div class="p-6 bg-gray-50 border-b border-gray-200">
+          <h3 class="font-medium text-gray-800">Image</h3>
+        </div>
+        
+        <div class="p-4 border-b border-gray-200 text-center">
+          <div class="h-40 overflow-hidden rounded">
+            <img src="<%= selectedAnimal1.imageUrl %>" alt="<%= selectedAnimal1.name %>" class="w-full h-full object-cover">
+          </div>
+        </div>
+        
+        <div class="p-4 border-b border-gray-200 text-center">
+          <div class="h-40 overflow-hidden rounded">
+            <img src="<%= selectedAnimal2.imageUrl %>" alt="<%= selectedAnimal2.name %>" class="w-full h-full object-cover">
+          </div>
+        </div>
+        
+        <!-- Scientific Name Row -->
+        <div class="p-6 bg-gray-50 border-b border-gray-200">
+          <h3 class="font-medium text-gray-800">Scientific Name</h3>
+        </div>
+        
+        <div class="p-6 border-b border-gray-200 text-center">
+          <p class="italic"><%= selectedAnimal1.scientificName %></p>
+        </div>
+        
+        <div class="p-6 border-b border-gray-200 text-center">
+          <p class="italic"><%= selectedAnimal2.scientificName %></p>
+        </div>
+        
+        <!-- Category Row -->
+        <div class="p-6 bg-gray-50 border-b border-gray-200">
+          <h3 class="font-medium text-gray-800">Category</h3>
+        </div>
+        
+        <div class="p-6 border-b border-gray-200 text-center">
+          <span class="inline-block bg-gray-100 px-3 py-1 rounded-full"><%= selectedAnimal1.category %></span>
+        </div>
+        
+        <div class="p-6 border-b border-gray-200 text-center">
+          <span class="inline-block bg-gray-100 px-3 py-1 rounded-full"><%= selectedAnimal2.category %></span>
+        </div>
+        
+        <!-- Habitat Row -->
+        <div class="p-6 bg-gray-50 border-b border-gray-200">
+          <h3 class="font-medium text-gray-800">Habitat</h3>
+        </div>
+        
+        <div class="p-6 border-b border-gray-200 text-center">
+          <a href="/habitat/<%= encodeURIComponent(selectedAnimal1.habitat) %>" class="text-blue-600 hover:underline">
+            <%= selectedAnimal1.habitat %>
+          </a>
+        </div>
+        
+        <div class="p-6 border-b border-gray-200 text-center">
+          <a href="/habitat/<%= encodeURIComponent(selectedAnimal2.habitat) %>" class="text-blue-600 hover:underline">
+            <%= selectedAnimal2.habitat %>
+          </a>
+        </div>
+        
+        <!-- Conservation Status Row -->
+        <div class="p-6 bg-gray-50 border-b border-gray-200">
+          <h3 class="font-medium text-gray-800">Conservation Status</h3>
+        </div>
+        
+        <div class="p-6 border-b border-gray-200 text-center">
+          <% if (selectedAnimal1.conservationStatus) { %>
+            <span class="inline-block px-3 py-1 rounded-full 
+              <%= selectedAnimal1.conservationStatus === 'Least Concern' ? 'bg-green-100 text-green-800' : 
+                 selectedAnimal1.conservationStatus === 'Near Threatened' ? 'bg-yellow-100 text-yellow-800' : 
+                 selectedAnimal1.conservationStatus === 'Vulnerable' ? 'bg-orange-100 text-orange-800' : 
+                 selectedAnimal1.conservationStatus === 'Endangered' ? 'bg-red-100 text-red-800' : 
+                 'bg-gray-100 text-gray-800' %>">
+              <%= selectedAnimal1.conservationStatus %>
+            </span>
+          <% } else { %>
+            <span class="text-gray-500">Not specified</span>
+          <% } %>
+        </div>
+        
+        <div class="p-6 border-b border-gray-200 text-center">
+          <% if (selectedAnimal2.conservationStatus) { %>
+            <span class="inline-block px-3 py-1 rounded-full 
+              <%= selectedAnimal2.conservationStatus === 'Least Concern' ? 'bg-green-100 text-green-800' : 
+                 selectedAnimal2.conservationStatus === 'Near Threatened' ? 'bg-yellow-100 text-yellow-800' : 
+                 selectedAnimal2.conservationStatus === 'Vulnerable' ? 'bg-orange-100 text-orange-800' : 
+                 selectedAnimal2.conservationStatus === 'Endangered' ? 'bg-red-100 text-red-800' : 
+                 'bg-gray-100 text-gray-800' %>">
+              <%= selectedAnimal2.conservationStatus %>
+            </span>
+          <% } else { %>
+            <span class="text-gray-500">Not specified</span>
+          <% } %>
+        </div>
+        
+        <!-- Description Row -->
+        <div class="p-6 bg-gray-50 border-b border-gray-200">
+          <h3 class="font-medium text-gray-800">Description</h3>
+        </div>
+        
+        <div class="p-6 border-b border-gray-200">
+          <p class="text-gray-700"><%= selectedAnimal1.description %></p>
+        </div>
+        
+        <div class="p-6 border-b border-gray-200">
+          <p class="text-gray-700"><%= selectedAnimal2.description %></p>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('compare-form');
+    
+    // If URL has parameters but form isn't submitted yet, submit it
+    if (window.location.search.includes('animal1=') && window.location.search.includes('animal2=')) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const animal1 = urlParams.get('animal1');
+      const animal2 = urlParams.get('animal2');
+      
+      if (animal1 && animal2) {
+        const animal1Select = document.getElementById('animal1');
+        const animal2Select = document.getElementById('animal2');
+        
+        if (animal1Select && animal2Select) {
+          animal1Select.value = animal1;
+          animal2Select.value = animal2;
+        }
+      }
+    }
+  });
+</script>
+
+<%- include('./layout/footer') %>

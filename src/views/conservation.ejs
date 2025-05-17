@@ -1,0 +1,109 @@
+<%- include('./layout/header') %>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <h1 class="text-3xl font-bold text-gray-800 mb-8">Conservation Status</h1>
+  
+  <div class="mb-8 bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">About Conservation Status</h2>
+    <p class="text-gray-700 mb-4">
+      Conservation status is a measure used to assess the likelihood of extinction for a species. 
+      The statuses follow the classification system developed by the International Union for Conservation of Nature (IUCN).
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-6">
+      <div class="bg-red-100 p-4 rounded-lg">
+        <h3 class="font-bold text-red-800 mb-2">Endangered</h3>
+        <p class="text-sm text-gray-700">Species facing a very high risk of extinction in the wild.</p>
+      </div>
+      <div class="bg-orange-100 p-4 rounded-lg">
+        <h3 class="font-bold text-orange-800 mb-2">Vulnerable</h3>
+        <p class="text-sm text-gray-700">Species facing a high risk of endangerment in the wild.</p>
+      </div>
+      <div class="bg-yellow-100 p-4 rounded-lg">
+        <h3 class="font-bold text-yellow-800 mb-2">Near Threatened</h3>
+        <p class="text-sm text-gray-700">Species likely to qualify for a threatened category in the near future.</p>
+      </div>
+      <div class="bg-green-100 p-4 rounded-lg">
+        <h3 class="font-bold text-green-800 mb-2">Least Concern</h3>
+        <p class="text-sm text-gray-700">Species that have a lower risk of extinction.</p>
+      </div>
+      <div class="bg-gray-100 p-4 rounded-lg">
+        <h3 class="font-bold text-gray-800 mb-2">Extinct</h3>
+        <p class="text-sm text-gray-700">Species for which the last individual has died.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="space-y-12">
+    <% ['Endangered', 'Vulnerable', 'Near Threatened', 'Least Concern', 'Extinct'].forEach(status => { %>
+      <% 
+        let bgClass = '';
+        let textClass = '';
+        let animals = [];
+        
+        // Filter animals by conservation status
+        if (allAnimals) {
+          animals = allAnimals.filter(animal => animal.conservationStatus === status);
+        }
+        
+        switch(status) {
+          case 'Endangered':
+            bgClass = 'bg-red-100';
+            textClass = 'text-red-800';
+            break;
+          case 'Vulnerable':
+            bgClass = 'bg-orange-100';
+            textClass = 'text-orange-800';
+            break;
+          case 'Near Threatened':
+            bgClass = 'bg-yellow-100';
+            textClass = 'text-yellow-800';
+            break;
+          case 'Least Concern':
+            bgClass = 'bg-green-100';
+            textClass = 'text-green-800';
+            break;
+          case 'Extinct':
+            bgClass = 'bg-gray-100';
+            textClass = 'text-gray-800';
+            break;
+        }
+      %>
+      
+      <section id="<%= status.toLowerCase().replace(' ', '-') %>" class="scroll-mt-16">
+        <div class="flex items-center mb-6">
+          <div class="<%= bgClass %> <%= textClass %> px-4 py-2 rounded-lg font-bold text-xl mr-4">
+            <%= status %>
+          </div>
+          <div class="h-0.5 flex-grow bg-gray-200"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <% if (animals && animals.length > 0) { %>
+            <% animals.forEach(animal => { %>
+              <a href="/animal/<%= animal._id %>" class="block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="h-40 overflow-hidden">
+                  <img src="<%= animal.imageUrl %>" alt="<%= animal.name %>" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                  <h3 class="text-lg font-bold text-gray-800"><%= animal.name %></h3>
+                  <p class="text-sm text-gray-500 italic mb-2"><%= animal.scientificName %></p>
+                  <span class="inline-block bg-gray-100 px-2 py-1 rounded text-xs text-gray-700"><%= animal.category %></span>
+                </div>
+              </a>
+            <% }); %>
+          <% } else { %>
+            <div class="col-span-full text-center py-12 bg-gray-50 rounded-lg">
+              <p class="text-lg text-gray-600">No animals with <%= status %> status</p>
+              <a href="/upload" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-lg">
+                Add New Animal
+              </a>
+            </div>
+          <% } %>
+        </div>
+      </section>
+    <% }); %>
+  </div>
+</div>
+
+<%- include('./layout/footer') %>
